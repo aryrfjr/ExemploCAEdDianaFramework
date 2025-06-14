@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<main-window
+    title="Exemplo do CAEd Framework"
+    type="MODAL">
+        
+    <menu-bar>
+        
+        <menu label="Notícia" atalho="N">
+            
+            <item-menu label="Cadastro de Notícias" action="showView:NoticiasCadastradas" />
+            <item-menu label="Cadastro Único de Notícias" action="showView:CadastroNoticiasUnico" />
+            <item-menu label="Teste com Combos" action="showView:TesteCombos" />
+            <item-menu label="Teste com Tabelas" action="showView:TesteTabelas" />
+            <item-menu label="Teste com JLists" action="showView:TesteJLists" />
+            <item-menu label="Teste com Abas" action="showView:TesteAbas" />
+            <item-menu label="Visualizar Notícias" action="showView:ListNoticias" />
+            <item-menu label="-"/>
+            <item-menu label="Sair" action="Sair" />
+            
+        </menu>
+        
+        <menu label="Ajuda" atalho="J">
+            
+            <item-menu label="Sobre" action="showView:Sobre" />
+            
+        </menu>
+        
+    </menu-bar>
+    
+</main-window>

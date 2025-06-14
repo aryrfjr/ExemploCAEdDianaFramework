@@ -1,0 +1,55 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+    
+    <package name="dianaframework">
+
+        <result-types>
+            
+            <result-type name="chain" class="com.opensymphony.xwork.ActionChainResult"/>
+            <result-type name="validationDialog" class="org.dianaframework.swing.result.ValidationDialogResult"/>
+            <result-type name="dialog" class="org.dianaframework.swing.result.DialogResult"/>
+            <result-type name="none" class="org.dianaframework.swing.result.NoneResult"/>
+            <result-type name="view" class="org.dianaframework.swing.result.ViewResult"/>
+            
+        </result-types>
+        
+        <interceptors>
+
+            <!-- Para validacoes personalizadas -->
+            <interceptor name="workflow" class="com.opensymphony.xwork.interceptor.DefaultWorkflowInterceptor"/>
+            
+            <!-- Para validacoes do xwork -->
+            <interceptor name="validator" class="com.opensymphony.xwork.validator.ValidationInterceptor"/>
+            
+            <interceptor name="conversionError" class="com.opensymphony.xwork.interceptor.ConversionErrorInterceptor"/>
+            
+            <interceptor name="lockView" class="org.dianaframework.swing.interceptor.LockViewInterceptor"/>
+                
+            <interceptor name="confirm" class="org.dianaframework.swing.interceptor.ConfirmInterceptor">
+            
+                <param name="message"/>
+                
+            </interceptor>
+            
+            <!-- Basic stack -->
+            <interceptor-stack name="confirmStack">
+                
+                <interceptor-ref name="lockView"/>
+                <interceptor-ref name="confirm"/>
+                
+            </interceptor-stack>
+            
+            <interceptor-stack name="basicActionStack">
+                
+                <interceptor-ref name="lockView"/>
+                <interceptor-ref name="validator"/>
+                <interceptor-ref name="workflow"/>
+                
+            </interceptor-stack>
+            
+        </interceptors>
+
+    </package>
+    
+</xwork>

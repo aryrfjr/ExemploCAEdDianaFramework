@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd"> 
+
+<validators>
+
+      <!--<validator name="DateFormat"
+        class="br.ufjf.caed.exemplo.DateErrorFieldValidator"/>-->
+        
+    <validator name="numberrequired"
+        class="org.dianaframework.swing.validators.NumberRequiredValidator"/>
+    
+    <validator name="required"
+        class="com.opensymphony.xwork.validator.validators.RequiredFieldValidator"/>
+    
+    <validator name="requiredstring"
+        class="com.opensymphony.xwork.validator.validators.RequiredStringValidator"/>
+    
+    <validator name="stringlength"
+        class="com.opensymphony.xwork.validator.validators.StringLengthFieldValidator"/>
+    
+    <validator name="int"
+        class="com.opensymphony.xwork.validator.validators.IntRangeFieldValidator"/>
+    
+    <validator name="date"
+        class="com.opensymphony.xwork.validator.validators.DateRangeFieldValidator"/>
+    
+    <validator name="expression"
+        class="com.opensymphony.xwork.validator.validators.ExpressionValidator"/>
+    
+    <validator name="fieldexpression"
+        class="com.opensymphony.xwork.validator.validators.FieldExpressionValidator"/>
+    
+    <validator name="email"
+        class="com.opensymphony.xwork.validator.validators.EmailValidator"/>
+    
+    <validator name="url"
+        class="com.opensymphony.xwork.validator.validators.URLValidator"/>
+    
+    <validator name="visitor" class="com.opensymphony.xwork.validator.validators.VisitorFieldValidator"/>
+    
+    <validator name="conversion"
+        class="com.opensymphony.xwork.validator.validators.ConversionErrorFieldValidator"/>
+    
+    <validator name="regex"
+        class="com.opensymphony.xwork.validator.validators.RegexFieldValidator"/>
+    
+</validators>

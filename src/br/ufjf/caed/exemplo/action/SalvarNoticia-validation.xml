@@ -1,0 +1,46 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+    
+    <field name="jtxtfldTituloNoticia">
+        
+        <field-validator type="requiredstring">
+            
+            <message>O título da notícia é requerido.</message>
+            
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            
+            <param name="minLength">0</param>
+            <param name="maxLength">100</param>
+            
+            <message>O título não pode conter mais do que ${maxLength} caracteres.</message>
+            
+        </field-validator>
+        
+    </field>
+        
+    <field name="jtxtaConteudoNoticia">
+        
+        <field-validator type="stringlength">
+            
+            <param name="minLength">50</param>
+            
+            <message>O conteúdo deve conter ao menos ${minLength} caracteres.</message>
+            
+        </field-validator>
+        
+    </field>
+    
+    <!--<field name="jtxtDataPublicacao">
+        
+        <field-validator type="DateFormat">
+            
+            <message>A data de publicação é inválida.</message>
+            
+        </field-validator>
+        
+    </field>-->
+    
+</validators>

@@ -1,0 +1,362 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+    
+    <!-- @todo Usar include de todos!!! -->
+    <include file="diana-xwork.xml" />
+    
+    <package name="sislame" extends="dianaframework">
+        
+        <!--<default-interceptor-ref name="basicActionStack" />-->
+        
+        <!-- Main menu actions -->
+        <action name="Sair" class="Sair"/> 
+            
+        <!-- JButton actions -->
+        <action name="IncluirNoticia" class="IncluirNoticia"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">SHOW_VIEW</param>
+                <!--<param name="clearView">YES</param>-->
+                <param name="viewName">ManterCadastroNoticiaNovo</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao incluir uma nova notícia</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="AlterarNoticia" class="AlterarNoticia"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">SHOW_VIEW</param>
+                <param name="viewName">ManterCadastroNoticiaEditar</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="ConsultarNoticia" class="ConsultarNoticia"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">SHOW_VIEW_LOCK_FIELDS</param>
+                <param name="viewName">ManterCadastroNoticiaEditar</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="ExcluirNoticia" class="ExcluirNoticia"> 
+            
+            <result name="success" type="view">
+                
+                <param name="action">RELOAD_VIEW</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao excluir a notícia</param>
+                
+            </result>
+            
+            <result name="none" type="none" /> 
+            
+            <interceptor-ref name="confirm">
+                
+                <param name="message">Deseja excluir a notícia?</param>
+                
+            </interceptor-ref>
+            
+        </action>
+        
+       <!-- @todo Unicas q fogem dos padroes, SalvarNoticia e AtualizarNoticia para resolver problemas com results mais complexos -->
+        <action name="SalvarNoticia" class="SalvarNoticia"> 
+            
+            <!-- Neste result, e necessario fechar a view CadastroNoticia e atualizar o modelo da view NoticiasCadastrados -->
+            <result name="success" type="view">
+                
+                <!--<param name="action">CLOSE_VIEW_RELOAD_MODEL</param>-->
+                <param name="action">QUESTION</param>
+                <param name="viewName">NoticiasCadastradas</param>
+                <param name="question">Deseja cadastrar uma nova notícia?</param>
+                <param name="yesAction">RELOAD_VIEW</param>
+                <param name="noAction">CLOSE_VIEW_RELOAD_MODEL</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao gravar a notícia</param>
+                
+            </result>
+            
+            <result name="input" type="validationDialog"/> 
+            
+            <interceptor-ref name="basicActionStack"/>
+            
+        </action>
+        
+        <action name="AtualizarNoticia" class="AtualizarNoticia"> 
+
+            <!-- Neste result, e necessario fechar a view CadastroNoticia e atualizar o modelo da view NoticiasCadastrados -->
+            <result name="success" type="view">
+                
+                <param name="action">CLOSE_VIEW</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao gravar a notícia</param>
+                
+            </result>
+            
+            <result name="input" type="validationDialog"/> 
+                
+            <interceptor-ref name="basicActionStack"/>
+            
+        </action>
+        
+        <action name="PesquisarNoticias" class="PesquisarNoticias"> 
+            
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                
+            </result>
+            
+            <interceptor-ref name="lockView"/>
+            
+        </action>
+
+        <action name="AlterarNoticiaUnico" class="AlterarNoticiaUnico"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">CadastroNoticiasUnico</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="InserirNoticiaUnico" class="InserirNoticiaUnico"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">CadastroNoticiasUnico</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="RemoverNoticiaUnico" class="RemoverNoticiaUnico"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">CadastroNoticiasUnico</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+            <result name="noticiaNaoRemovivel" type="dialog"> 
+                
+                <param name="message">Voce só pode remover notícias ainda não salvas no BD.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="SalvarNoticiasUnico" class="SalvarNoticiasUnico"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">RELOAD_VIEW</param>
+                <param name="viewName">CadastroNoticiasUnico</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="AtualizarNoticiaUnico" class="AtualizarNoticiaUnico"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">CadastroNoticiasUnico</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Selecione uma notícia na tabela abaixo</param>
+                
+            </result>
+            
+            <result name="noticiaNaoAlteravel" type="dialog"> 
+                
+                <param name="message">Voce só pode alterar notícias ainda não salvas no BD.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="PreencheNivel2" class="PreencheNivel2"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">TesteCombos</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao preencher o nível 2.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="PreencheNivel3" class="PreencheNivel3"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">TesteCombos</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao preencher o nível 3.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="AdicionarPublicada" class="AdicionarPublicada"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">TesteTabelas</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro adicionar uma notícia publicada.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="RemoverPublicada" class="RemoverPublicada"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">TesteTabelas</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro adicionar uma notícia publicada.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="SalvarPublicadas" class="SalvarPublicadas"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">CLOSE_VIEW</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Erro ao salvar as notícias publicadas.</param>
+                
+            </result>
+            
+        </action>
+        
+        <action name="VisualizarNoticia" class="VisualizarNoticia"> 
+
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                <param name="viewName">ListNoticias</param>
+                
+            </result>
+            
+            <result name="error" type="dialog"> 
+                
+                <param name="message">Problemas ao visualizar a notícia.</param>
+                
+            </result>
+            
+        </action>
+
+        <action name="TesteLostFocus" class="TesteLostFocus"> 
+            
+            <result name="success" type="view">
+                
+                <param name="action">UPDATE_VIEW</param>
+                
+            </result>
+            
+        </action>
+
+    </package>
+    
+</xwork>
