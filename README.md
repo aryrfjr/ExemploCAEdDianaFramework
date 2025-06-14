@@ -39,6 +39,6 @@ This project is part of my professional archive, and a way to share a chapter of
 ## 📄 License
 
 Copyright (c) 2006–2007  
-Ary Junior
+Ary Ferreira (Junior)
 
 This code is shared for educational and historical purposes only. Redistribution or commercial use is not permitted without written permission from the author.
